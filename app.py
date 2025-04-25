@@ -1,16 +1,16 @@
 from flask import Flask, request, render_template_string
-import psycopg
+import psycopg2
 import os
 
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg.connect(
+    conn = psycopg2.connect(
         user=os.environ['DB_USER'],
         password=os.environ['DB_PASSWORD'],
         host=os.environ['DATABASE_URL'], 
         port=os.environ['DB_PORT'],
-        dbname=os.environ['DB_NAME']
+        database=os.environ['DB_NAME']
     )
     return conn
 
