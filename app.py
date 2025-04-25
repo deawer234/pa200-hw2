@@ -5,7 +5,13 @@ import os
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg.connect(os.environ['DB_USER'], os.environ['DB_PASSWORD'], os.environ['DATABASE_URL'],os.environ['DB_PORT'], os.environ['DB_NAME'])
+    conn = psycopg.connect(
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
+        host=os.environ['DATABASE_URL'], 
+        port=os.environ['DB_PORT'],
+        dbname=os.environ['DB_NAME']
+    )
     return conn
 
 @app.route('/')
