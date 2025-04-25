@@ -1,11 +1,11 @@
 from flask import Flask, request, render_template
-import psycopg2
+import psycopg
 import os
 
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg2.connect(os.environ['DB_USER'], os.environ['DB_PASSWORD'], os.environ['DATABASE_URL'],os.environ['DB_PORT'], os.environ['DB_NAME'])
+    conn = psycopg.connect(os.environ['DB_USER'], os.environ['DB_PASSWORD'], os.environ['DATABASE_URL'],os.environ['DB_PORT'], os.environ['DB_NAME'])
     return conn
 
 @app.route('/')
