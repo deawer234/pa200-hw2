@@ -68,7 +68,9 @@ jobs:
         with:
           name: python-app
           path: |
-            .
+            ./*.py
+            ./requirements.txt
+            ./startup.txt
             !venv/
 
   deploy:
