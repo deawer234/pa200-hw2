@@ -1,11 +1,11 @@
 from flask import Flask, request, render_template_string
-import psycopg2
+import psycopg
 import os
 
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg2.connect(
+    conn = psycopg.connect(
         user=os.environ['DB_USER'],
         password=os.environ['DB_PASSWORD'],
         host=os.environ['DATABASE_URL'], 
@@ -18,6 +18,12 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
     cur = conn.cursor()
+    cur.execute('''
+        CREATE TABLE IF NOT EXISTS messages (
+            id SERIAL PRIMARY KEY,
+            content TEXT NOT NULL
+        )
+    ''')
 
     if request.method == 'POST':
         msg = request.form.get('message', '').strip()
