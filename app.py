@@ -18,12 +18,7 @@ def get_db_connection():
 def index():
     conn = get_db_connection()
     cur = conn.cursor()
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS messages (
-            id SERIAL PRIMARY KEY,
-            content TEXT NOT NULL
-        )
-    ''')
+
 
     if request.method == 'POST':
         msg = request.form.get('message', '').strip()
@@ -48,7 +43,3 @@ def index():
         {% endfor %}
         </ul>
     ''', messages=messages)
-
-if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 8000))
-    app.run(host="0.0.0.0", port=port)
