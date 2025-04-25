@@ -21,7 +21,7 @@ name: Build and deploy Python app to Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: pa200  # set this to the name of your Azure Web App
-  PYTHON_VERSION: '3.10'              # set this to the Python version to use
+  PYTHON_VERSION: '3.11'              # set this to the Python version to use
 
 on:
   push:
@@ -48,18 +48,8 @@ jobs:
           python -m venv venv
           source venv/bin/activate
 
-      - name: Set up dependency caching for faster installs
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
-
       - name: Install dependencies
         run: pip install -r requirements.txt
-
-
 
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
