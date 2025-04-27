@@ -1,11 +1,17 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template
 import psycopg2
 import os
 
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg2.connect(os.getenv('POSTGRESQL_DATABASE_URL'))
+    conn = psycopg2.connect(
+        user=os.environ['DB_USER'],
+        password=os.environ['DB_PASSWORD'],
+        host=os.environ['DATABASE_URL'], 
+        port=os.environ['DB_PORT'],
+        database=os.environ['DB_NAME']
+    )
     return conn
 
 @app.route('/', methods=['GET', 'POST'])
