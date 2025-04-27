@@ -5,13 +5,7 @@ import os
 app = Flask(__name__)
 
 def get_db_connection():
-    conn = psycopg2.connect(
-        user=os.environ['DB_USER'],
-        password=os.environ['DB_PASSWORD'],
-        host=os.environ['DATABASE_URL'], 
-        port=os.environ['DB_PORT'],
-        database=os.environ['DB_NAME']
-    )
+    conn = psycopg2.connect(os.getenv('DATABASE_URL'))
     return conn
 
 @app.route('/', methods=['GET', 'POST'])
