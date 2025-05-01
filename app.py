@@ -1,13 +1,17 @@
 from flask import Flask, request, render_template
+from azure.identity import DefaultAzureCredential
 import psycopg2
 import os
 
 app = Flask(__name__)
 
 def get_db_connection():
+    credential = DefaultAzureCredential()
+    token = credential.get_token("https://ossrdbms-aad.database.windows.net").token
+    
     conn = psycopg2.connect(
         user=os.environ['DB_USER'],
-        password=os.environ['DB_PASSWORD'],
+        password=token,
         host=os.environ['DATABASE_URL'], 
         port=os.environ['DB_PORT'],
         database=os.environ['DB_NAME']
