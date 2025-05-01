@@ -10,11 +10,12 @@ def get_db_connection():
     token = credential.get_token("https://ossrdbms-aad.database.windows.net").token
     
     conn = psycopg2.connect(
-        user=os.environ['DB_USER'],
+        user="pa200@11904f23-f0db-4cdc-96f7-390bd55fcee8",
         password=token,
-        host=os.environ['DATABASE_URL'], 
-        port=os.environ['DB_PORT'],
-        database=os.environ['DB_NAME']
+        host="pa200-postgresdb.postgres.database.azure.com", 
+        port="5432",
+        databasee="postgres",
+        sslmode='require'
     )
     return conn
 
