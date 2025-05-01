@@ -14,8 +14,7 @@ def get_db_connection():
         password=token,
         host="pa200-postgresdb.postgres.database.azure.com", 
         port="5432",
-        databasee="postgres",
-        sslmode='require'
+        databasee="postgres"
     )
     return conn
 
