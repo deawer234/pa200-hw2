@@ -14,7 +14,7 @@ def get_db_connection():
         password=accessToken.token,
         host="aad_postgresflexible_xlqf6", 
         port="5432",
-        databasee="postgres"
+        database="postgres"
     )
     return conn
 
