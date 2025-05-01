@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template
 import psycopg2
 import os
 
@@ -36,15 +36,8 @@ def index():
     cur.close()
     conn.close()
 
-    return render_template_string('''
-        <h1>Message Board</h1>
-        <form method="post">
-            <input name="message" required>
-            <button type="submit">Send</button>
-        </form>
-        <ul>
-        {% for msg in messages %}
-            <li>{{ msg[0] }}</li>
-        {% endfor %}
-        </ul>
-    ''', messages=messages)
+    # Define external JavaScript URL for Azure Blob Storage
+    # You'll need to update this URL when you upload your script to Azure
+    azure_script_url = "https://pa200hw2xnemec11.blob.core.windows.net/scripts/message-board.js"
+    
+    return render_template('index.html', messages=messages, script_url=azure_script_url)
