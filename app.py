@@ -7,12 +7,12 @@ app = Flask(__name__)
 
 def get_db_connection():
     credential = DefaultAzureCredential()
-    token = credential.get_token("https://ossrdbms-aad.database.windows.net").token
+    accessToken = credential.get_token('https://ossrdbms-aad.database.windows.net/.default')
     
     conn = psycopg2.connect(
         user="pa200@11904f23-f0db-4cdc-96f7-390bd55fcee8",
-        password=token,
-        host="pa200-postgresdb.postgres.database.azure.com", 
+        password=accessToken.token,
+        host="aad_postgresflexible_xlqf6", 
         port="5432",
         databasee="postgres"
     )
