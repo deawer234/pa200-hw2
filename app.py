@@ -1,7 +1,6 @@
 from flask import Flask, request, render_template
 from azure.identity import DefaultAzureCredential
 import psycopg2
-import os
 
 app = Flask(__name__)
 
