@@ -34,11 +34,8 @@ jobs:
         
         # Uploading static file
       - name: Upload JavaScript to Azure Blob Storage
-        uses: azure/CLI@v2
-        with:
-          inlineScript: |
-            az storage blob upload --container-name scripts --file static/message-board.js --name message-board.js --overwrite --account-name pa200hw2xnemec11 --sas-token "${{ secrets.AZURE_STORAGE_SAS_TOKEN }}"
-
+        run: |
+         az storage blob upload --container-name scripts --file ./static/message-board.js --name message-board.js --overwrite --account-name pa200hw2xnemec11 --sas-token "${{ secrets.AZURE_STORAGE_SAS_TOKEN }}"
 
 
 
